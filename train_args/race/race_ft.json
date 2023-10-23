@@ -1,5 +1,5 @@
 {
-    "output_dir": "output/race_pt",
+    "output_dir": "output/RACE/race_pt",
     "model_name_or_path": "/data0/maqi/huggingface_models/llama-2-7b",
     "train_file": "/data0/maqi/KGLQA-data/datasets/RACE/race_all_train.jsonl",
     "num_train_epochs": 1,
