@@ -1,15 +1,18 @@
 from peft import PeftModel
 from transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig
 import torch
+
 """
 使用该脚本，将lora的权重合并大base model中
 """
 
 
 def merge_lora_to_base_model():
-    model_name_or_path = '/data0/maqi/huggingface_models/llama-2-7b'
-    adapter_name_or_path = '/data0/maqi/KGLQA-model/output/race_pt/final'
-    save_path = '/data0/maqi/huggingface_models/option1-models/race_ft'
+    # model_name_or_path = "/data0/maqi/huggingface_models/TechGPT-7B"
+    # model_name_or_path = '/data0/maqi/huggingface_models/llama-2-7b'
+    model_name_or_path = "/data0/maqi/huggingface_models/option1-models/race_ft"
+    adapter_name_or_path = '/data0/maqi/KGLQA-model/output/QuALITY/race_1_quality_2_2048/final'
+    save_path = '/data0/maqi/huggingface_models/option1-models/option1-quality-2048'
 
     config = AutoConfig.from_pretrained(model_name_or_path)
     tokenizer = AutoTokenizer.from_pretrained(
