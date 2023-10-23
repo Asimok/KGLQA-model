@@ -14,7 +14,7 @@ if __name__ == '__main__':
     max_seq_length = 2048
     split_token = '<question>:\n'
 
-    with open("/data0/maqi/KGLTQA/datasets/race/race_middle_test.jsonl", 'r') as f:
+    with open("/data0/maqi/KGLQA-data/datasets/RACE/race_middle_test.jsonl", 'r') as f:
         samples = f.readlines()
 
     true_labels, pred_labels = [], []

@@ -2,17 +2,16 @@
 
 target=/data0/maqi/KGLQA-model/train_args/quality/option1-1-race-2-quality.json
 
-
-log_file=$(echo "${target}" | awk -F '/' '{print $NF}' | awk -F '.' '{print $1}')
-
+log_file=train.log
 # 读取json文件中 output_dir 的值
 output_dir=$(jq -r '.output_dir' ${target})
 # 创建文件夹
 if [ ! -d "${output_dir}" ];then
     mkdir -p "${output_dir}"
 else
-    rm -rf "${output_dir}"
-    mkdir -p "${output_dir}"
+  # 删除目录下所有文件
+    # shellcheck disable=SC2115
+    rm -rf "${output_dir}"/*
 fi
 
 
@@ -25,8 +24,8 @@ else
     export CUDA_VISIBLE_DEVICES=0,1
 fi
 
-nohup torchrun --nnodes 1 --nproc_per_node ${nproc_per_node} train_qlora.py --train_args_file ${target} > "${output_dir}"/${log_file}.log 2>&1 &
+nohup torchrun --nnodes 1 --nproc_per_node ${nproc_per_node} train_qlora.py --train_args_file ${target} > "${output_dir}"/${log_file} 2>&1 &
 # shellcheck disable=SC2046
-echo $(pwd)/"${output_dir}"/"${log_file}".log
+echo $(pwd)/"${output_dir}"/"${log_file}"
 # 打印进程号
 echo 'pid:' $!

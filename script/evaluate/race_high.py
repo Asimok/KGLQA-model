@@ -14,7 +14,7 @@ if __name__ == '__main__':
     max_seq_length = 2048
     split_token = '<question>:\n'
 
-    with open("/data0/maqi/KGLTQA/datasets/race/race_high_test.jsonl", 'r') as f:
+    with open("/data0/maqi/KGLQA-data/datasets/RACE/race_high_test.jsonl", 'r') as f:
         samples = f.readlines()
 
     true_labels, pred_labels = [], []
@@ -32,3 +32,4 @@ if __name__ == '__main__':
 
     with open(f"{model}_eval.json", "w", encoding="utf-8") as f:
         f.write(json.dumps({"true_labels": true_labels, "pred_labels": pred_labels}, ensure_ascii=False, indent=4))
+        f.write(classification_report(true_labels, pred_labels, digits=4))

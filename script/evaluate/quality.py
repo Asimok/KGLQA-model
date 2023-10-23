@@ -13,7 +13,7 @@ if __name__ == '__main__':
     max_seq_length = 2048
     split_token = '<question>:\n'
 
-    with open("/data0/maqi/KGLTQA/datasets/quality_process/quality_rocketqa_4096_instruct/dev.jsonl",
+    with open("/data0/maqi/KGLQA-data/datasets/QuALITY/quality_rocketqa_2048_instruct//dev.jsonl",
               'r') as f:
         samples = f.readlines()
 

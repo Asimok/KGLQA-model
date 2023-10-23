@@ -61,12 +61,12 @@ if __name__ == '__main__':
     # adapter_name_or_path = None
 
     # 使用base model和adapter进行推理，无需手动合并权重
-    model_name_or_path = "/data0/maqi/huggingface_models/TechGPT-7B"
+    # model_name_or_path = "/data0/maqi/huggingface_models/TechGPT-7B"
     # model_name_or_path = "/data0/maqi/huggingface_models/llama-2-7b"
-    # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/race_all_and_quality"
+    model_name_or_path = "/data0/maqi/huggingface_models/option1-models/race_ft"
 
     adapter_name_or_path = os.path.join(
-        '/data0/maqi/Firefly/output/NCR/ncr_1536_and_cclue_all/final')
+        '/data0/maqi/KGLQA-model/output/race_1_quality_2_2048_new/final')
     # 是否使用4bit进行推理，能够节省很多显存，但效果可能会有一定的下降
     load_in_4bit = False
     # 生成超参配置

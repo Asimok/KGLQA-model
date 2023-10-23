@@ -92,7 +92,7 @@ def setup_everything():
         os.makedirs(training_args.output_dir)
     os.system(f'cp {train_args_file} {training_args.output_dir}')
 
-    logger.add(join(training_args.output_dir, 'train.log'))
+    # logger.add(join(training_args.output_dir, 'train.log'))
     # logger.info("train_args:{}".format(training_args))
 
     # 设置随机种子
