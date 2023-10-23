@@ -8,8 +8,8 @@ import torch
 
 def merge_lora_to_base_model():
     model_name_or_path = '/data0/maqi/huggingface_models/llama-2-7b'
-    adapter_name_or_path = '/data0/maqi/Firefly/output/test/checkpoint-6000'
-    save_path = '/data0/maqi/huggingface_models/option1-models/race_all_and_quality'
+    adapter_name_or_path = '/data0/maqi/KGLQA-model/output/race_pt/final'
+    save_path = '/data0/maqi/huggingface_models/option1-models/race_ft'
 
     config = AutoConfig.from_pretrained(model_name_or_path)
     tokenizer = AutoTokenizer.from_pretrained(

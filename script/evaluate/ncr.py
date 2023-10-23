@@ -11,7 +11,7 @@ from script.evaluate.evaluate import get_response
 if __name__ == '__main__':
     model = 'result/ncr_1536_and_cclue'
     max_seq_length = 1536
-    split_token = '\n问题:\n'
+    split_token = '<question>:\n'
 
     with open("/data0/maqi/KGLTQA/datasets/NCR/ncr_firefly_format_1536/test.jsonl",
               'r') as f:

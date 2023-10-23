@@ -33,14 +33,14 @@ class SFTDataset(Dataset):
         for x in conversation:
             utterances.append(x['human'])
             utterances.append(x['assistant'])
-        # TODO 从 <question>: 截断
+        #  从 <question>: 截断
         if len(utterances) == 2:
             # 截断 utterances[0]
             query = utterances[0].split('<question>:\n')
             if len(query) == 2:
                 query_1_len = len(self.tokenizer.encode(query[1]))
                 assistant_len = len(self.tokenizer.encode(utterances[1]))
-                need_token = self.max_seq_length - query_1_len - assistant_len - 4
+                need_token = self.max_seq_length - query_1_len - assistant_len - 4 - 10
                 query[0] = self.tokenizer.decode(self.tokenizer.encode(query[0])[:need_token], skip_special_tokens=True)
                 utterances[0] = query[0] + '<question>:\n' + query[1]
 
@@ -57,6 +57,7 @@ class SFTDataset(Dataset):
                 target_mask += [1] * (len(utterances_id) + 1)
         assert len(input_ids) == len(target_mask)
         # 对长度进行截断
+        # logger.info(len(input_ids))
         input_ids = input_ids[:self.max_seq_length]
         target_mask = target_mask[:self.max_seq_length]
         attention_mask = [1] * len(input_ids)

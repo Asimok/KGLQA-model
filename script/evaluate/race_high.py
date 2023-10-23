@@ -12,7 +12,7 @@ from script.evaluate.evaluate import get_response
 if __name__ == '__main__':
     model = 'result/race_high'
     max_seq_length = 2048
-    split_token = '\nquestion:\n'
+    split_token = '<question>:\n'
 
     with open("/data0/maqi/KGLTQA/datasets/race/race_high_test.jsonl", 'r') as f:
         samples = f.readlines()

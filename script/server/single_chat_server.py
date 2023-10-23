@@ -23,10 +23,11 @@ def ds_llm():
     params = request.get_json()
     text = params.pop('inputs').strip()
     max_seq_length = params.get('max_seq_length', 1536)
-    split_token = params.get('split_token', '\nquestion:\n')
+    split_token = params.get('split_token', '<question>:\n')
 
     query = text.split(split_token)
     if len(query) == 2:
+        print(f"query: {len(query)}")
         query_1_len = len(tokenizer.encode(query[1]))
         need_token = max_seq_length - query_1_len - 2 - 4
         query[0] = tokenizer.decode(tokenizer.encode(query[0])[:need_token], skip_special_tokens=True)
@@ -60,12 +61,12 @@ if __name__ == '__main__':
     # adapter_name_or_path = None
 
     # 使用base model和adapter进行推理，无需手动合并权重
-    # model_name_or_path = "/data0/maqi/huggingface_models/TechGPT-7B"
-    model_name_or_path = "/data0/maqi/huggingface_models/llama-2-7b"
+    model_name_or_path = "/data0/maqi/huggingface_models/TechGPT-7B"
+    # model_name_or_path = "/data0/maqi/huggingface_models/llama-2-7b"
     # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/race_all_and_quality"
 
     adapter_name_or_path = os.path.join(
-        '/data0/maqi/Firefly/output/quality_rocketqa_2048_full_and_race_all_firefly_format/checkpoint-7000')
+        '/data0/maqi/Firefly/output/NCR/ncr_1536_and_cclue_all/final')
     # 是否使用4bit进行推理，能够节省很多显存，但效果可能会有一定的下降
     load_in_4bit = False
     # 生成超参配置

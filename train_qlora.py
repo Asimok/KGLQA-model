@@ -1,3 +1,5 @@
+import datasets
+import transformers
 from transformers import AutoTokenizer, BitsAndBytesConfig, LlamaTokenizer, LlamaForCausalLM
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from transformers import (
@@ -12,7 +14,6 @@ import os
 from os.path import join
 import torch
 import bitsandbytes as bnb
-from collections import defaultdict
 
 from component.collator import SFTDataCollator
 from component.dataset import SFTDataset, ChatGLM2SFTDataset
@@ -78,7 +79,7 @@ def find_all_linear_names(model):
 def setup_everything():
     parser = argparse.ArgumentParser()
     parser.add_argument("--train_args_file", type=str,
-                        default='train_args/quality/option1-quality-and-race-2048.json',
+                        required=True,
                         help="")
     args = parser.parse_args()
     train_args_file = args.train_args_file
@@ -91,7 +92,7 @@ def setup_everything():
         os.makedirs(training_args.output_dir)
     os.system(f'cp {train_args_file} {training_args.output_dir}')
 
-    # logger.add(join(training_args.output_dir, 'train.log'))
+    logger.add(join(training_args.output_dir, 'train.log'))
     # logger.info("train_args:{}".format(training_args))
 
     # 设置随机种子
@@ -104,37 +105,17 @@ def init_components(args, training_args):
     初始化各个组件
     """
     logger.info('Initializing components...')
-    # 下面的设置至关重要，否则无法多卡训练
-    # world_size = int(os.environ.get("WORLD_SIZE", 1))
-    # ddp = world_size != 1
-    # device_map = "auto"
-    # # if we are in a distributed setting, we need to set the device map and max memory per device
-    # if os.environ.get('LOCAL_RANK') is not None:
-    #     local_rank = int(os.environ.get('LOCAL_RANK', '0'))
-    #     device_map = {'': local_rank}
 
+    # datasets.utils.logging.set_verbosity(datasets.logging.DEBUG)
+    # transformers.utils.logging.set_verbosity(transformers.logging.DEBUG)
+
+    # 下面的设置至关重要，否则无法多卡训练
     training_args.ddp_find_unused_parameters = False
     local_rank = int(os.environ.get('LOCAL_RANK', '0'))
     device_map = {'': local_rank}
 
     # 加载模型
     model = AutoModelForCausalLM.from_pretrained(
-        args.model_name_or_path,
-        device_map=device_map,
-        load_in_4bit=True,
-        torch_dtype=torch.float16,
-        trust_remote_code=True,
-        use_cache=False,
-        quantization_config=BitsAndBytesConfig(
-            load_in_4bit=True,
-            bnb_4bit_compute_dtype=torch.float16,
-            bnb_4bit_use_double_quant=True,
-            bnb_4bit_quant_type="nf4",
-            llm_int8_threshold=6.0,
-            llm_int8_has_fp16_weight=False,
-        ),
-    )
-    model2 = LlamaForCausalLM.from_pretrained(
         args.model_name_or_path,
         device_map=device_map,
         load_in_4bit=True,

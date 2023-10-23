@@ -1,7 +1,7 @@
 {
-    "output_dir": "output/quality_rocketqa_2048_and_race",
-    "model_name_or_path": "/data0/maqi/huggingface_models/llama-2-7b",
-    "train_file": "/data0/maqi/KGLQA-data/datasets/QuALITY/quality_rocketqa_4096_and_race_instruct/train.jsonl",
+    "output_dir": "output/race_1_quality_2_2048",
+    "model_name_or_path": "/data0/maqi/huggingface_models/option1-models/race_ft",
+    "train_file": "/data0/maqi/KGLQA-data/datasets/QuALITY/quality_rocketqa_2048_instruct/train.jsonl",
     "num_train_epochs": 2,
     "per_device_train_batch_size": 7,
     "gradient_accumulation_steps": 2,

@@ -11,7 +11,7 @@ from script.evaluate.evaluate import get_response
 if __name__ == '__main__':
     model = 'result/quality_2048'
     max_seq_length = 2048
-    split_token = '\nquestion:\n'
+    split_token = '<question>:\n'
 
     with open("/data0/maqi/KGLTQA/datasets/quality_process/quality_rocketqa_4096_instruct/dev.jsonl",
               'r') as f:
@@ -33,5 +33,3 @@ if __name__ == '__main__':
         f.write(json.dumps({"true_labels": true_labels, "pred_labels": pred_labels}, ensure_ascii=False, indent=4))
         f.write(classification_report(true_labels, pred_labels, digits=4))
 
-# 政策受知识库约束
-# 知识库可能更新
