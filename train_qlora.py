@@ -140,9 +140,9 @@ def init_components(args, training_args):
         tokenizer.padding_side = "left"
 
         logger.info('\n')
-        logger.info('*' * 50)
+        logger.info('*' * 20)
         logger.info('using TechGPT-7B')
-        logger.info('*' * 50)
+        logger.info('*' * 20)
         logger.info('\n')
     else:
         tokenizer = AutoTokenizer.from_pretrained(
@@ -152,9 +152,9 @@ def init_components(args, training_args):
             use_fast=False if model.config.model_type == 'llama' else True
         )
         logger.info('\n')
-        logger.info('*' * 50)
+        logger.info('*' * 20)
         logger.info('using llama2 model')
-        logger.info('*' * 50)
+        logger.info('*' * 20)
         logger.info('\n')
     # QWenTokenizer比较特殊，pad_token_id、bos_token_id、eos_token_id均为None。eod_id对应的token为<|endoftext|>
     if tokenizer.__class__.__name__ == 'QWenTokenizer':

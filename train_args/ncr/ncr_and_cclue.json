@@ -1,7 +1,7 @@
 {
-    "output_dir": "output/NCR/ncr_1536_and_cclue_all",
+    "output_dir": "output/NCR/ncr_and_cclue_all",
     "model_name_or_path": "/data0/maqi/huggingface_models/TechGPT-7B",
-    "train_file": "/data0/maqi/KGLTQA/datasets/merge_datasets/ncr_1536_and_cclue_all/train.jsonl",
+    "train_file": "/data0/maqi/KGLQA-data/datasets/merge/ncr_and_cclue/train.jsonl",
     "num_train_epochs": 3,
     "per_device_train_batch_size": 10,
     "gradient_accumulation_steps": 1,

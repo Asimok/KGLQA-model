@@ -1,7 +1,7 @@
 import os.path
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
-from transformers import AutoTokenizer, LlamaTokenizer
+from transformers import AutoTokenizer, LlamaTokenizer, set_seed
 import torch
 from flask import Flask, request, jsonify
 
@@ -33,16 +33,11 @@ def ds_llm():
         query[0] = tokenizer.decode(tokenizer.encode(query[0])[:need_token], skip_special_tokens=True)
         text = query[0] + split_token + query[1]
 
-    # chatglm使用官方的数据组织格式
-    if model.config.model_type == 'chatglm':
-        text = '[Round 1]\n\n问：{}\n\n答：'.format(text)
-        input_ids = tokenizer(text, return_tensors="pt", add_special_tokens=False).input_ids.to(device)
-    # 为了兼容qwen-7b，因为其对eos_token进行tokenize，无法得到对应的eos_token_id
-    else:
-        input_ids = tokenizer(text, return_tensors="pt", add_special_tokens=False).input_ids.to(device)
-        bos_token_id = torch.tensor([[tokenizer.bos_token_id]], dtype=torch.long).to(device)
-        eos_token_id = torch.tensor([[tokenizer.eos_token_id]], dtype=torch.long).to(device)
-        input_ids = torch.concat([bos_token_id, input_ids, eos_token_id], dim=1)
+    input_ids = tokenizer(text, return_tensors="pt", add_special_tokens=False).input_ids.to(device)
+    bos_token_id = torch.tensor([[tokenizer.bos_token_id]], dtype=torch.long).to(device)
+    eos_token_id = torch.tensor([[tokenizer.eos_token_id]], dtype=torch.long).to(device)
+    input_ids = torch.concat([bos_token_id, input_ids, eos_token_id], dim=1)
+
     with torch.no_grad():
         outputs = model.generate(
             input_ids=input_ids, max_new_tokens=max_new_tokens, do_sample=True,
@@ -57,16 +52,18 @@ def ds_llm():
 
 if __name__ == '__main__':
     # 使用合并后的模型进行推理
-    # model_name_or_path = '/home/jclian91/experiment/Firefly/script/checkpoint/firefly-llama2-7b-qlora-sft-race-merge'
-    # adapter_name_or_path = None
+    model_name_or_path = '/data0/maqi/huggingface_models/option1-models/race_ft'
+    adapter_name_or_path = None
 
     # 使用base model和adapter进行推理，无需手动合并权重
-    model_name_or_path = "/data0/maqi/huggingface_models/TechGPT-7B"
+    # model_name_or_path = "/data0/maqi/huggingface_models/TechGPT-7B"
+    # model_name_or_path = '/data0/maqi/huggingface_models/option1-models/cclue_ft_TechGPT-7B'
     # model_name_or_path = "/data0/maqi/huggingface_models/llama-2-7b"
     # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/race_ft"
 
-    adapter_name_or_path = os.path.join(
-        '/data0/maqi/KGLQA-model/output/CCLUE/cclue_ft/checkpoint-400')
+    # adapter_name_or_path = os.path.join('/data0/maqi/KGLQA-model/output/NCR/ncr_ft/final')
+
+    set_seed(318)
     # 是否使用4bit进行推理，能够节省很多显存，但效果可能会有一定的下降
     load_in_4bit = False
     # 生成超参配置
@@ -96,12 +93,6 @@ if __name__ == '__main__':
             # llama不支持fast
             use_fast=False if model.config.model_type == 'llama' else True
         )
-
-    # QWenTokenizer比较特殊，pad_token_id、bos_token_id、eos_token_id均为None。eod_id对应的token为<|endoftext|>
-    if tokenizer.__class__.__name__ == 'QWenTokenizer':
-        tokenizer.pad_token_id = tokenizer.eod_id
-        tokenizer.bos_token_id = tokenizer.eod_id
-        tokenizer.eos_token_id = tokenizer.eod_id
     print(f"load model: {model_name_or_path}")
 
-    app.run(host="0.0.0.0", port=7032)
+    app.run(host="0.0.0.0", port=7033)

@@ -5,7 +5,7 @@ from tqdm import tqdm
 
 
 def get_response(inputs, max_seq_length_, split_token_):
-    url = "http://219.216.64.231:7032/firefly"
+    url = "http://219.216.64.231:7033/firefly"
     # url = "http://219.216.64.75:7032/firefly"
     payload = json.dumps({
         "inputs": inputs,
@@ -39,7 +39,9 @@ def predict(eval_file_path, save_path, max_seq_length, split_token):
         print(
             f"\n{i + 1}\tlabel:{label}\tpred:{pred}\t{label == pred}\tacc:{correct / (i + 1)}\t")
     print('*' * 50)
-    print('acc:', accuracy_score(true_labels, pred_labels))
+    # 保留小数点后四位
+    acc = accuracy_score(true_labels, pred_labels)
+    print(f"acc:{acc:.4f}")
     print('*' * 50)
     metrics = classification_report(y_true=true_labels, y_pred=pred_labels, labels=['A', 'B', 'C', 'D'], digits=4)
     print(metrics)

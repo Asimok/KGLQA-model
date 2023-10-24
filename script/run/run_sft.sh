@@ -2,7 +2,7 @@
 
 nproc_per_node=2
 
-target=/data0/maqi/KGLQA-model/train_args/ncr/ncr_ft.json
+target=/data0/maqi/KGLQA-model/train_args/ncr/ncr_and_cclue.json
 #target=/data0/maqi/KGLQA-model/train_args/cclue/cclue_ft.json
 
 log_file=train.log
