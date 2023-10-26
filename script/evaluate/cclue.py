@@ -13,7 +13,7 @@ if __name__ == '__main__':
                         help="datasets")
     args = parser.parse_args()
 
-    save_path = 'result/cclue_ft'
+    save_path = f'result/cclue_ft/{args.type}'
     max_seq_length = 1400
     split_token = '<question>:\n'
 

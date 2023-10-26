@@ -2,8 +2,9 @@
 
 nproc_per_node=2
 
-target=/data0/maqi/KGLQA-model/train_args/ncr/ncr_and_cclue.json
-#target=/data0/maqi/KGLQA-model/train_args/cclue/cclue_ft.json
+#target=/data0/maqi/KGLQA-model/train_args/ncr/ncr_llama2_ft.json
+target=/data0/maqi/KGLQA-model/train_args/ncr/option-2/ncr_caption_and_relativity_ft.json
+#target=/data0/maqi/KGLQA-model/train_args/cclue/option1-ncr-1-cclue-2.json
 
 log_file=train.log
 # 读取json文件中 output_dir 的值

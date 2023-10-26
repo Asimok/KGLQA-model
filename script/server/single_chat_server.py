@@ -40,7 +40,7 @@ def ds_llm():
 
     with torch.no_grad():
         outputs = model.generate(
-            input_ids=input_ids, max_new_tokens=max_new_tokens, do_sample=True,
+            input_ids=input_ids, max_new_tokens=max_new_tokens, do_sample=False,
             top_p=top_p, temperature=temperature, repetition_penalty=repetition_penalty,
             eos_token_id=tokenizer.eos_token_id
         )
@@ -52,16 +52,16 @@ def ds_llm():
 
 if __name__ == '__main__':
     # 使用合并后的模型进行推理
-    model_name_or_path = '/data0/maqi/huggingface_models/option1-models/race_ft'
-    adapter_name_or_path = None
+    # model_name_or_path = '/data0/maqi/huggingface_models/option1-models/option1-quality-2048'
+    # adapter_name_or_path = None
 
     # 使用base model和adapter进行推理，无需手动合并权重
     # model_name_or_path = "/data0/maqi/huggingface_models/TechGPT-7B"
-    # model_name_or_path = '/data0/maqi/huggingface_models/option1-models/cclue_ft_TechGPT-7B'
+    model_name_or_path = "/data0/maqi/huggingface_models/firefly-llama2-7b-chat"
     # model_name_or_path = "/data0/maqi/huggingface_models/llama-2-7b"
-    # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/race_ft"
-
-    # adapter_name_or_path = os.path.join('/data0/maqi/KGLQA-model/output/NCR/ncr_ft/final')
+    # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/ncr_and_cclue_TechGPT-7B"
+    #
+    adapter_name_or_path = os.path.join('/data0/maqi/KGLQA-model/output/NCR/ncr_llama2_ft/final')
 
     set_seed(318)
     # 是否使用4bit进行推理，能够节省很多显存，但效果可能会有一定的下降
@@ -95,4 +95,4 @@ if __name__ == '__main__':
         )
     print(f"load model: {model_name_or_path}")
 
-    app.run(host="0.0.0.0", port=7033)
+    app.run(host="0.0.0.0", port=7032)
