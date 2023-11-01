@@ -3,7 +3,7 @@
 nproc_per_node=2
 
 #target=/data0/maqi/KGLQA-model/train_args/ncr/ncr_llama2_ft.json
-target=/data0/maqi/KGLQA-model/train_args/ncr/option-2/ncr_caption_and_relativity_ft.json
+target=/data0/maqi/KGLQA-model/train_args/quality/option-2/quality-bace-race_ft_2048.json
 #target=/data0/maqi/KGLQA-model/train_args/cclue/option1-ncr-1-cclue-2.json
 
 log_file=train.log

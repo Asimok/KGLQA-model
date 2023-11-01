@@ -12,8 +12,9 @@ def merge_lora_to_base_model():
     # model_name_or_path = '/data0/maqi/huggingface_models/llama-2-7b'
     # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/race_ft"
 
-    adapter_name_or_path = '/data0/maqi/KGLQA-model/output/NCR/ncr_ft/final'
-    save_path = '/data0/maqi/huggingface_models/option1-models/ncr_ft_TechGPT-7B'
+    adapter_name_or_path = '/data0/maqi/KGLQA-model/output/NCR/ncr_caption_and_relativity_ft/final'
+    save_path = '/data0/maqi/KGLQA-model/output/NCR/ncr_caption_and_relativity_ft/merge_3epoch'
+    # save_path = '/data0/maqi/huggingface_models/option1-models/ncr_ft_TechGPT-7B'
 
     config = AutoConfig.from_pretrained(model_name_or_path)
     tokenizer = AutoTokenizer.from_pretrained(

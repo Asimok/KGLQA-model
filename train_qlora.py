@@ -22,7 +22,6 @@ from component.metric import compute_metrics, preprocess_logits_for_metrics
 from component.trainer import LoRATrainer
 from component.loss import TargetLMLoss
 
-
 def verify_model_dtype(model):
     """
     查看模型种各种类型的参数的情况

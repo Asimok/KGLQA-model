@@ -7,8 +7,8 @@ from tqdm import tqdm
 
 
 def get_response(inputs, max_seq_length_, split_token_):
-    url = "http://219.216.64.231:7032/firefly"
-    # url = "http://219.216.64.75:7032/firefly"
+    # url = "http://219.216.64.231:7032/firefly"
+    url = "http://219.216.64.75:7032/firefly"
     payload = json.dumps({
         "inputs": inputs,
         "max_seq_length": max_seq_length_,
@@ -57,3 +57,10 @@ def predict(eval_file_path, save_path, max_seq_length, split_token):
     with open(f"{save_path}_eval.json", "w", encoding="utf-8") as f:
         f.write(json.dumps({"true_labels": true_labels, "pred_labels": pred_labels}, ensure_ascii=False, indent=4))
         f.write(metrics)
+
+
+if __name__ == '__main__':
+    #  测试 get_response
+    req = 'Please determine if the following paragraphs can answer the question,output yes or no in json format:\nquestion:\nWhy is Si retirement so significant to the Space Exploration Team? \npassage:\n"Spaceman on a Spree" is a short story written by Mack Reynolds. The story follows the adventures of a retired space pilot named Seymour Pond after he receives a golden watch as a farewell gift from his colleagues. Despite feeling underwhelmed by the token gesture, Seymour sets out on a spree across the galaxy, encountering various challenges along the way. He meets new people, learns valuable lessons, and ultimately gains a sense of purpose and fulfillment in his post-retirement years.'
+    res = get_response(req, 1536, '<question>:\n')
+    print(res)
