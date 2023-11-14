@@ -8,7 +8,7 @@ from script.evaluate.evaluate import predict
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="ncr evaluate")
-    PHASES = ['dev', 'test']
+    PHASES = ['dev', 'test','train']
     parser.add_argument("--type", type=str, required=True, choices=PHASES,
                         help="datasets")
     args = parser.parse_args()

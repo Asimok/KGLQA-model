@@ -43,7 +43,7 @@ correct = 0
 for i, human_input in enumerate(tqdm(samples)):
     conv = json.loads(human_input.strip())
     instruct_conv = instruct_format(context=conv['context'], answer='-1', query=conv['query'],
-                                    options=[conv['option_0'], conv['option-1'], conv['option-2'],
+                                    options=[conv['option_0'], conv['option-1'], conv['race'],
                                              conv['option_3']], conversation_id=conv['question_unique_id'])
     req_input = instruct_conv["conversation"][0]["human"]
     question_id = instruct_conv['conversation_id']

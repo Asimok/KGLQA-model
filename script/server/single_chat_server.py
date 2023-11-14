@@ -1,6 +1,6 @@
 import os.path
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 from transformers import AutoTokenizer, LlamaTokenizer, set_seed
 import torch
 from flask import Flask, request, jsonify
@@ -52,17 +52,19 @@ def ds_llm():
 
 if __name__ == '__main__':
     # 使用合并后的模型进行推理
-    # model_name_or_path = "/data0/maqi/huggingface_models/firefly-llama2-7b-chat"
-    # adapter_name_or_path = None
+    model_name_or_path = "/data0/maqi/huggingface_models/option2-models/option2-quality-2048"
+    adapter_name_or_path = None
 
     # 使用base model和adapter进行推理，无需手动合并权重
-    model_name_or_path = "/data0/maqi/huggingface_models/TechGPT-7B"
+    # model_name_or_path = "/data0/maqi/huggingface_models/TechGPT-7B"
     # model_name_or_path = "/data0/maqi/huggingface_models/firefly-llama2-7b-chat"
     # model_name_or_path = "/data0/maqi/huggingface_models/llama-2-7b"
-    # model_name_or_path = "/data0/maqi/KGLQA-model/output/NCR/ncr_caption_and_relativity_ft_merge/merge"
+    # model_name_or_path = "/data0/maqi/huggingface_models/option2-models/race_ft"
 
-    adapter_name_or_path = os.path.join('/data0/maqi/KGLQA-model/output/NCR/ncr_caption_and_relativity_ft_2/final')
+    # adapter_name_or_path = os.path.join('/data0/maqi/KGLQA-model/output/option-2/race_1_quality_2/checkpoint-100')
 
+    print(f"model_name_or_path:\n {model_name_or_path}")
+    print(f"adapter_name_or_path:\n {adapter_name_or_path}")
     set_seed(318)
     # 是否使用4bit进行推理，能够节省很多显存，但效果可能会有一定的下降
     load_in_4bit = False
@@ -95,4 +97,4 @@ if __name__ == '__main__':
         )
     print(f"load model: {model_name_or_path}")
 
-    app.run(host="0.0.0.0", port=7032)
+    app.run(host="0.0.0.0", port=7033)

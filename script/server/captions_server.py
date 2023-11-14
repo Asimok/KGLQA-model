@@ -76,4 +76,4 @@ if __name__ == '__main__':
         )
     print(f"load model: {model_name_or_path}")
 
-    app.run(host="0.0.0.0", port=7030)
+    app.run(host="0.0.0.0", port=7036)

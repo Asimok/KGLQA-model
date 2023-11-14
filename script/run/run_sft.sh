@@ -2,9 +2,10 @@
 
 nproc_per_node=2
 
-#target=/data0/maqi/KGLQA-model/train_args/ncr/ncr_llama2_ft.json
-target=/data0/maqi/KGLQA-model/train_args/quality/option-2/quality-bace-race_ft_2048.json
+#target=/data0/maqi/KGLQA-model/train_args/ncr/race/ncr_caption_and_rel_ft.json
+target=/data0/maqi/KGLQA-model/train_args/quality/option-2/race_1_quality_2.json
 #target=/data0/maqi/KGLQA-model/train_args/cclue/option1-ncr-1-cclue-2.json
+#target=/data0/maqi/KGLQA-model/train_args/race/option-2/race_ft.json
 
 log_file=train.log
 # 读取json文件中 output_dir 的值
