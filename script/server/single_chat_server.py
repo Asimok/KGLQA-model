@@ -52,16 +52,17 @@ def ds_llm():
 
 if __name__ == '__main__':
     # 使用合并后的模型进行推理
-    # model_name_or_path = "/data0/maqi/huggingface_models/option2-models/option2-quality-2048"
+    # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/cclue_ft_TechGPT-7B"
     # adapter_name_or_path = None
 
     # 使用base model和adapter进行推理，无需手动合并权重
-    model_name_or_path = "/data0/maqi/huggingface_models/TechGPT-7B"
+    # model_name_or_path = "/data0/maqi/huggingface_models/TechGPT-7B"
     # model_name_or_path = "/data0/maqi/huggingface_models/firefly-llama2-7b-chat"
     # model_name_or_path = "/data0/maqi/huggingface_models/llama-2-7b"
-    # model_name_or_path = "/data0/maqi/huggingface_models/option2-models/race_ft"
+    model_name_or_path = "/data0/maqi/huggingface_models/option1-models/option1-ncr_ft"
+    # model_name_or_path = "/data0/maqi/huggingface_models/option2-models/option2-cclue"
 
-    adapter_name_or_path = os.path.join('/data0/maqi/KGLQA-model/output/option-2/NCR/ncr_ft/final')
+    adapter_name_or_path = os.path.join('/data0/maqi/KGLQA-model/output/option-1/CCLUE/option1_ncr_1_cclue_2/final')
 
     print(f"model_name_or_path:\n {model_name_or_path}")
     print(f"adapter_name_or_path:\n {adapter_name_or_path}")
