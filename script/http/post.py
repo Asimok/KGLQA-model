@@ -3,7 +3,7 @@ import httpx
 
 
 def main():
-    url = 'http://127.0.0.1:8877/firefly'
+    url = "http://219.216.64.231:21001/techgpt-api"
     timeout = 60    # 超时设置
 
     # 生成超参数
@@ -13,7 +13,8 @@ def main():
     repetition_penalty = 1.0
     do_sample = True
 
-    inputs = '背诵李白的将进酒'  # 请求内容
+    inputs = '你是谁'  # 请求内容
+    inputs = "Human: \n" + inputs + "\n\nAssistant:\n"
     inputs = inputs.strip()
 
     params = {
@@ -29,7 +30,7 @@ def main():
     headers = {"Content-Type": "application/json", "Connection": "close"}
     session = httpx.Client(base_url="", headers=headers)
     response = session.request("POST", url, json=params, timeout=timeout)
-    result = json.loads(response.text)['output']
+    result = json.loads(response.text)['response']
     print(result)
 
 

@@ -1,7 +1,7 @@
 import os.path
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
-from transformers import AutoTokenizer, LlamaTokenizer, set_seed
+from transformers import LlamaTokenizer, set_seed
 import torch
 from flask import Flask, request, jsonify
 
@@ -10,24 +10,23 @@ import sys
 sys.path.append("../../")
 from component.utils import ModelUtils
 
-"""
-单轮对话，不具有对话历史的记忆功能
-"""
-
 app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False  # 防止返回中文乱码
 
 
-@app.route('/firefly', methods=['POST'])
+@app.route('/option1_ncr_api', methods=['POST'])
 def ds_llm():
     params = request.get_json()
     text = params.pop('inputs').strip()
     max_seq_length = params.get('max_seq_length', 1536)
+    top_p = params.get('top_p', 0.99)
+    temperature = params.get('temperature', 0.01)
     split_token = params.get('split_token', '<question>:\n')
+    max_new_tokens = params.get('max_new_tokens', 1)
+    repetition_penalty = params.get('repetition_penalty', 1.2)
 
     query = text.split(split_token)
     if len(query) == 2:
-        # print(f"query: {len(query)}")
         query_1_len = len(tokenizer.encode(query[1]))
         need_token = max_seq_length - query_1_len - 2 - 4
         query[0] = tokenizer.decode(tokenizer.encode(query[0])[:need_token], skip_special_tokens=True)
@@ -52,28 +51,14 @@ def ds_llm():
 
 if __name__ == '__main__':
     # 使用合并后的模型进行推理
-    model_name_or_path = "/data0/maqi/huggingface_models/option2-models/option2-ncr-and-cclue"
+    model_name_or_path = "/data0/maqi/huggingface_models/option1-models/option1-ncr_ft"
     adapter_name_or_path = None
-
-    # 使用base model和adapter进行推理，无需手动合并权重
-    # model_name_or_path = "/data0/maqi/huggingface_models/TechGPT-7B"
-    # model_name_or_path = "/data0/maqi/huggingface_models/firefly-llama2-7b-chat"
-    # model_name_or_path = "/data0/maqi/huggingface_models/llama-2-7b"
-    # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/option1-ncr_ft"
-    # model_name_or_path = "/data0/maqi/huggingface_models/option2-models/option2-cclue"
-
-    # adapter_name_or_path = os.path.join('/data0/maqi/KGLQA-model/output/option-1/CCLUE/option1_ncr_1_cclue_2/final')
 
     print(f"model_name_or_path:\n {model_name_or_path}")
     print(f"adapter_name_or_path:\n {adapter_name_or_path}")
     set_seed(318)
     # 是否使用4bit进行推理，能够节省很多显存，但效果可能会有一定的下降
     load_in_4bit = False
-    # 生成超参配置
-    max_new_tokens = 1
-    top_p = 0.99
-    temperature = 0.01
-    repetition_penalty = 1
 
     device = 'cuda'
     # 加载模型
@@ -83,21 +68,12 @@ if __name__ == '__main__':
         adapter_name_or_path=adapter_name_or_path
     ).eval()
     # 加载tokenizer
-    if model.name_or_path.__contains__('TechGPT-7B'):
-        print('use TechGPT-7B tokenizer')
-        tokenizer = LlamaTokenizer.from_pretrained(model_name_or_path)
-        tokenizer.pad_token_id = 0
-        tokenizer.bos_token_id = 1
-        tokenizer.eos_token_id = 2
-        tokenizer.padding_side = "left"
-    else:
-        print('use AutoTokenizer')
-        tokenizer = AutoTokenizer.from_pretrained(
-            model_name_or_path,
-            trust_remote_code=True,
-            # llama不支持fast
-            use_fast=False if model.config.model_type == 'llama' else True
-        )
+    tokenizer = LlamaTokenizer.from_pretrained(model_name_or_path)
+    tokenizer.pad_token_id = 0
+    tokenizer.bos_token_id = 1
+    tokenizer.eos_token_id = 2
+    tokenizer.padding_side = "left"
+
     print(f"load model: {model_name_or_path}")
 
-    app.run(host="0.0.0.0", port=7033)
+    app.run(host="0.0.0.0", port=27032)

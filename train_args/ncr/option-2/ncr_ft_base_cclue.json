@@ -1,5 +1,5 @@
 {
-    "output_dir": "output/option-2/NCR/ncr_ft_base_cclue",
+    "output_dir": "output/option-2/NCR/ncr_ft_base_cclue-test",
     "model_name_or_path": "/data0/maqi/huggingface_models/option2-models/option2-cclue",
     "train_file": "/data0/maqi/KGLQA-data/datasets/NCR/Caption/ncr_caption_and_rel_new_instruct/train.jsonl",
     "num_train_epochs": 1,

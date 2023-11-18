@@ -37,6 +37,7 @@ else
     export CUDA_VISIBLE_DEVICES=0,1
 fi
 
+#torchrun --nnodes 1 --nproc_per_node ${nproc_per_node} train_qlora.py --train_args_file ${target}
 nohup torchrun --nnodes 1 --nproc_per_node ${nproc_per_node} train_qlora.py --train_args_file ${target} > "${output_dir}"/${log_file} 2>&1 &
 # shellcheck disable=SC2046
 echo $(pwd)/"${output_dir}"/"${log_file}"
