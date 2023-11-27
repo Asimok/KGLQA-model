@@ -1,6 +1,6 @@
 import os.path
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 from transformers import AutoTokenizer, LlamaTokenizer, set_seed
 import torch
 from flask import Flask, request, jsonify
@@ -52,7 +52,7 @@ def ds_llm():
 
 if __name__ == '__main__':
     # 使用合并后的模型进行推理
-    model_name_or_path = "/data0/maqi/huggingface_models/option2-models/option2-ncr-and-cclue"
+    model_name_or_path = "/data0/maqi/huggingface_models/option1-models/option1-cclue"
     adapter_name_or_path = None
 
     # 使用base model和adapter进行推理，无需手动合并权重
