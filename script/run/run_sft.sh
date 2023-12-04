@@ -2,7 +2,7 @@
 
 nproc_per_node=1
 
-target=/data0/maqi/KGLQA-model/train_args/ablation_study/cclue/option-1/cclue_ft.json
+target=/data0/maqi/KGLQA-model/train_args/ablation_study/cclue/option-1/cclue_random_select.json
 
 
 log_file=train.log
