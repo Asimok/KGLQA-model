@@ -1,8 +1,8 @@
 {
     "desc": "QuALITY 使用随机选择的关键句训练",
-    "output_dir": "output/ablation_study/QuALITY/quality_random_select",
+    "output_dir": "output/ablation_study/QuALITY/quality_chunk",
     "model_name_or_path": "/data0/maqi/huggingface_models/option1-models/race_ft",
-    "train_file": "/data0/maqi/KGLQA-data/datasets/QuALITY/random_select/quality_random_2048_instruct/train.jsonl",
+    "train_file": "/data0/maqi/KGLQA-data/datasets/QuALITY/random_select/quality_chunk_2048_instruct/train.jsonl",
     "num_train_epochs": 2,
     "per_device_train_batch_size": 7,
     "gradient_accumulation_steps": 2,
