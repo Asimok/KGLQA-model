@@ -1,8 +1,8 @@
 #!/bin/bash
 
-nproc_per_node=1
+nproc_per_node=2
 
-target=/data0/maqi/KGLQA-model/train_args/ablation_study/quality/option-1/quality_random_select.json
+target=/data0/maqi/KGLQA-model/train_args/ablation_study/ncr/option-2/without_knowledge_chunk.json
 
 
 log_file=train.log
