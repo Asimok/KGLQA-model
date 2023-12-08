@@ -1,6 +1,6 @@
 {
     "desc": "CCLUE-MRC数据集,使用随机选择的关键句训练",
-    "output_dir": "output/ablation_study/NCR/cclue_random_select",
+    "output_dir": "output/ablation_study/CCLUE/cclue_random_select",
     "model_name_or_path": "/data0/maqi/huggingface_models/option1-models/option1-ncr_ft",
     "train_file": "/data0/maqi/KGLQA-data/datasets/CCLUE/random_select/cclue_random_1400_instruct/train.jsonl",
     "num_train_epochs": 3,

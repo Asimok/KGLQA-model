@@ -10,7 +10,7 @@
     "max_seq_length": 1400,
     "logging_steps": 20,
     "save_steps": 300,
-    "save_total_limit": 5,
+    "save_total_limit": 1,
     "lr_scheduler_type": "constant_with_warmup",
     "warmup_ratio": 0.1,
     "lora_rank": 128,

@@ -4,7 +4,7 @@
     "model_name_or_path": "/data0/maqi/huggingface_models/option1-models/race_ft",
     "train_file": "/data0/maqi/KGLQA-data/datasets/QuALITY/random_select/quality_chunk_2048_instruct/train.jsonl",
     "num_train_epochs": 2,
-    "per_device_train_batch_size": 7,
+    "per_device_train_batch_size": 6,
     "gradient_accumulation_steps": 2,
     "learning_rate": 1e-4,
     "max_seq_length": 2048,
