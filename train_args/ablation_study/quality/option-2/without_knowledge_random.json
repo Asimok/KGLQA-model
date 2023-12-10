@@ -1,8 +1,8 @@
 {
-    "desc": "不做知识选择，使用NCR+CCLUE数据集，随机选择的关键句训练",
-    "output_dir": "output/ablation_study/option-2/NCR/without_knowledge_random",
-    "model_name_or_path": "/data0/maqi/huggingface_models/TechGPT-7B",
-    "train_file": "/data0/maqi/KGLQA-data/datasets/merge/random_select/without_knowledge_random_instruction/train.jsonl",
+    "desc": "不做知识选择，使用QuALITY数据集，随机选择的关键句训练",
+    "output_dir": "output/ablation_study/option-2/QuALITY/without_knowledge_random",
+    "model_name_or_path": "/data0/maqi/huggingface_models/option2-models/option2-race_ft",
+    "train_file": "/data0/maqi/KGLQA-data/datasets/QuALITY/random_select/without_knowledge_random_instruction/train.jsonl",
     "num_train_epochs": 3,
     "per_device_train_batch_size": 2,
     "gradient_accumulation_steps": 6,

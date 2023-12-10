@@ -2,7 +2,7 @@
     "desc": "不做知识选择，使用NCR+CCLUE数据集，算法选择的关键句训练",
     "output_dir": "output/ablation_study/option-2/NCR/without_knowledge_select",
     "model_name_or_path": "/data0/maqi/huggingface_models/TechGPT-7B",
-    "train_file": "",
+    "train_file": "/data0/maqi/KGLQA-data/datasets/merge/random_select/without_knowledge_select_instruction/train.jsonl",
     "num_train_epochs": 3,
     "per_device_train_batch_size": 6,
     "gradient_accumulation_steps": 2,
