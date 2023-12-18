@@ -1,6 +1,6 @@
 import os.path
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 from transformers import AutoTokenizer, LlamaTokenizer, set_seed
 import torch
 from flask import Flask, request, jsonify
@@ -61,16 +61,18 @@ if __name__ == '__main__':
     # model_name_or_path = "/data0/maqi/huggingface_models/llama-2-7b"
     # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/option1-ncr_ft"
     # model_name_or_path = '/data0/maqi/huggingface_models/option1-models/option1-race_ft'
+    # model_name_or_path = '/data0/maqi/huggingface_models/option2-models/option2-race_ft'
 
     # adapter_name_or_path = os.path.join('/data0/maqi/KGLQA-model/output/ablation_study/NCR/ncr_random_select/final')
     # adapter_name_or_path = '/data0/maqi/KGLQA-model/output/ablation_study/CCLUE/cclue_chunk/final'
-    adapter_name_or_path = '/data0/maqi/KGLQA-model/output/ablation_study/CCLUE/without_ncr_ft/final'
-    # adapter_name_or_path = '/data0/maqi/KGLQA-model/output/ablation_study/QuALITY/quality_random_select/final'
+    # adapter_name_or_path = '/data0/maqi/KGLQA-model/output/ablation_study/option-2/NCR/without_knowledge_random/final'
+    adapter_name_or_path = '/data0/maqi/KGLQA-model/output/ablation_study/option-2/NCR/without_knowledge_chunk/final'
+    # adapter_name_or_path = '/data0/maqi/KGLQA-model/output/ablation_study/option-2/QuALITY/with_knowledge_without_select/final'
     print()
-    print('*' * 60)
+    print('*' * 120)
     print(f"model_name_or_path:\n {model_name_or_path}")
     print(f"adapter_name_or_path:\n {adapter_name_or_path}")
-    print('*' * 60)
+    print('*' * 120)
     print()
     set_seed(318)
     # 是否使用4bit进行推理，能够节省很多显存，但效果可能会有一定的下降

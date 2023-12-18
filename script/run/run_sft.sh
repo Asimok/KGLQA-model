@@ -2,8 +2,8 @@
 
 nproc_per_node=1
 
-target=/data0/maqi/KGLQA-model/train_args/ablation_study/ncr/option-2/with_knowledge_without_select.json
-
+#target=/data0/maqi/KGLQA-model/train_args/ablation_study/quality/option-2/without_knowledge_random.json
+target=/data0/maqi/KGLQA-model/train_args/ablation_study/ncr/option-2/without_knowledge_chunk.json
 
 log_file=train.log
 # 读取json文件中 output_dir 的值
@@ -36,7 +36,7 @@ else
 fi
 
 #torchrun --nnodes 1 --nproc_per_node ${nproc_per_node} train_qlora.py --train_args_file ${target}
-nohup torchrun --master_port 29502 --nnodes 1 --nproc_per_node ${nproc_per_node} train_qlora.py --train_args_file ${target} > "${output_dir}"/${log_file} 2>&1 &
+nohup torchrun --master_port 29502 --nnodes 1 --nproc_per_node ${nproc_per_node} /data0/maqi/KGLQA-model/train_qlora.py --train_args_file ${target} > "${output_dir}"/${log_file} 2>&1 &
 # shellcheck disable=SC2046
 echo $(pwd)/"${output_dir}"/"${log_file}"
 # 打印进程号
