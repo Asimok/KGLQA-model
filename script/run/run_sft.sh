@@ -3,7 +3,7 @@
 nproc_per_node=1
 
 #target=/data0/maqi/KGLQA-model/train_args/ablation_study/quality/option-2/without_knowledge_random.json
-target=/data0/maqi/KGLQA-model/train_args/ablation_study/ncr/option-2/without_knowledge_chunk.json
+target=/data0/maqi/KGLQA-model/train_args/ablation_study/quality/option-2/without_race_ft.json
 
 log_file=train.log
 # 读取json文件中 output_dir 的值

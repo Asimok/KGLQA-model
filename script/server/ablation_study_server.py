@@ -1,6 +1,6 @@
 import os.path
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 from transformers import AutoTokenizer, LlamaTokenizer, set_seed
 import torch
 from flask import Flask, request, jsonify
@@ -56,9 +56,9 @@ if __name__ == '__main__':
     # adapter_name_or_path = None
 
     # 使用base model和adapter进行推理，无需手动合并权重
-    model_name_or_path = "/data0/maqi/huggingface_models/TechGPT-7B"
+    # model_name_or_path = "/data0/maqi/huggingface_models/TechGPT-7B"
     # model_name_or_path = "/data0/maqi/huggingface_models/firefly-llama2-7b-chat"
-    # model_name_or_path = "/data0/maqi/huggingface_models/llama-2-7b"
+    model_name_or_path = "/data0/maqi/huggingface_models/llama-2-7b"
     # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/option1-ncr_ft"
     # model_name_or_path = '/data0/maqi/huggingface_models/option1-models/option1-race_ft'
     # model_name_or_path = '/data0/maqi/huggingface_models/option2-models/option2-race_ft'
@@ -66,8 +66,8 @@ if __name__ == '__main__':
     # adapter_name_or_path = os.path.join('/data0/maqi/KGLQA-model/output/ablation_study/NCR/ncr_random_select/final')
     # adapter_name_or_path = '/data0/maqi/KGLQA-model/output/ablation_study/CCLUE/cclue_chunk/final'
     # adapter_name_or_path = '/data0/maqi/KGLQA-model/output/ablation_study/option-2/NCR/without_knowledge_random/final'
-    adapter_name_or_path = '/data0/maqi/KGLQA-model/output/ablation_study/option-2/NCR/without_knowledge_chunk/final'
-    # adapter_name_or_path = '/data0/maqi/KGLQA-model/output/ablation_study/option-2/QuALITY/with_knowledge_without_select/final'
+    # adapter_name_or_path = '/data0/maqi/KGLQA-model/output/ablation_study/option-2/NCR/without_knowledge_chunk/final'
+    adapter_name_or_path = '/data0/maqi/KGLQA-model/output/ablation_study/option-2/QuALITY/without_race_ft_with_knowledge/final'
     print()
     print('*' * 120)
     print(f"model_name_or_path:\n {model_name_or_path}")
