@@ -11,7 +11,7 @@ from component.utils import ModelUtils
 
 def main():
     # 使用合并后的模型进行推理
-    model_name_or_path = 'YeungNLP/firefly-baichuan-13b'
+    model_name_or_path = '/data0/maqi/huggingface_models/alpaca-2-7b-english'
     adapter_name_or_path = None
 
     # 使用base model和adapter进行推理，无需手动合并权重
@@ -66,7 +66,7 @@ def main():
         outputs = outputs.tolist()[0][len(input_ids[0]):]
         response = tokenizer.decode(outputs)
         response = response.strip().replace(tokenizer.eos_token, "").strip()
-        print("Firefly：{}".format(response))
+        print("Model：{}".format(response))
         text = input('User：')
 
 
