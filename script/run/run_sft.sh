@@ -3,7 +3,8 @@
 nproc_per_node=1
 
 #target=/data0/maqi/KGLQA-model/train_args/ablation_study/quality/option-2/without_knowledge_random.json
-target=/data0/maqi/KGLQA-model/train_args/ncr/option-1/ncr_ft_alpaca.json
+target=/data0/maqi/KGLQA-model/train_args/ncr/option-1/ncr_ft_baichuan2.json
+#target=/data0/maqi/KGLQA-model/train_args/cclue/option-1/ncr_1_cclue_2_alpaca.json
 #target=/data0/maqi/KGLQA-model/train_args/quality/option-2/race_ft_alpaca_1_quality_2.json
 
 log_file=train.log
@@ -31,7 +32,7 @@ fi
 
 # 如果 nproc_per_node=1，那么就只使用第二块卡
 if [ ${nproc_per_node} -eq 1 ];then
-    export CUDA_VISIBLE_DEVICES=1
+    export CUDA_VISIBLE_DEVICES=1c
 else
     export CUDA_VISIBLE_DEVICES=0,1
 fi

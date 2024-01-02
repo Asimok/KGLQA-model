@@ -131,6 +131,7 @@ def init_components(args, training_args):
             llm_int8_threshold=6.0,
             llm_int8_has_fp16_weight=False,
         ),
+        use_reentrant=True
     )
     # 加载tokenizer
     if model.name_or_path.__contains__('TechGPT-7B'):

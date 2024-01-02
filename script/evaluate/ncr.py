@@ -7,6 +7,10 @@ sys.path.append('../../')
 from script.evaluate.evaluate import predict
 
 if __name__ == '__main__':
+    """
+    nohup python -u  ncr.py --type test > logs/ncr_test.log 2>&1 &
+    nohup python -u  ncr.py --type dev > logs/ncr_dev.log 2>&1 &
+    """
     parser = argparse.ArgumentParser(description="ncr evaluate")
     PHASES = ['dev', 'test', 'train']
     parser.add_argument("--type", type=str, choices=PHASES, default='dev',

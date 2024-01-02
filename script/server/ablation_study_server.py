@@ -1,6 +1,6 @@
 import os.path
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 from transformers import AutoTokenizer, LlamaTokenizer, set_seed
 import torch
 from flask import Flask, request, jsonify
@@ -59,12 +59,14 @@ if __name__ == '__main__':
     # model_name_or_path = "/data0/maqi/huggingface_models/TechGPT-7B"
     # model_name_or_path = "/data0/maqi/huggingface_models/firefly-llama2-7b-chat"
     # model_name_or_path = "/data0/maqi/huggingface_models/llama-2-7b"
-    # model_name_or_path = "/data0/maqi/huggingface_models/Chinese-LLaMA-Alpaca-2/Chinese-Alpaca-2-7B"
-    model_name_or_path = '/data0/maqi/huggingface_models/alpaca-2-7b-english'
+    model_name_or_path = "/data0/maqi/huggingface_models/Chinese-LLaMA-Alpaca-2/Chinese-Alpaca-2-7B"
+    # model_name_or_path = '/data0/maqi/huggingface_models/alpaca-2-7b-english'
     # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/option1-ncr_ft"
     # model_name_or_path = '/data0/maqi/huggingface_models/option1-models/option1-race_ft'
     # model_name_or_path = '/data0/maqi/huggingface_models/option2-models/option2-race_ft'
-    # model_name_or_path = '/data0/maqi/huggingface_models/option-1/option1-race_ft_alpaca'
+    # model_name_or_path = '/data0/maqi/huggingface_models/option1-models/option1-ncr_ft_alpaca'
+    # model_name_or_path = '/data0/maqi/huggingface_models/option2-models/option2-race_ft_alpaca'
+    # model_name_or_path = '/data0/maqi/huggingface_models/option2-models/option2-ncr_and_cclue_alpaca'
 
     # adapter_name_or_path = os.path.join('/data0/maqi/KGLQA-model/output/ablation_study/NCR/ncr_random_select/final')
     # adapter_name_or_path = '/data0/maqi/KGLQA-model/output/ablation_study/CCLUE/cclue_chunk/final'
@@ -74,7 +76,9 @@ if __name__ == '__main__':
     # adapter_name_or_path = '/data0/maqi/KGLQA-model/output/option-2/NCR/ncr_and_cclue_alpaca/final'
     # adapter_name_or_path = '/data0/maqi/KGLQA-model/output/option-1/RACE/race_ft_alpaca/final'
     # adapter_name_or_path = '/data0/maqi/KGLQA-model/output/option-1/QuALITY/race_ft_alpaca_1_quality_2/final'
-    adapter_name_or_path = '/data0/maqi/KGLQA-model/output/option-2/RACE/race_ft_alpaca/final'
+    # adapter_name_or_path = '/data0/maqi/KGLQA-model/output/option-1/NCR/ncr_ft_alpaca/final'
+    # adapter_name_or_path='/data0/maqi/KGLQA-model/output/option-2/NCR/ncr_and_cclue_alpaca/final'
+    adapter_name_or_path = '/data0/maqi/KGLQA-model/output/option-1/NCR/ncr_ft_alpaca/final'
     # adapter_name_or_path = None
     print()
     print('*' * 120)

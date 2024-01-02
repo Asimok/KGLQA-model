@@ -10,13 +10,15 @@ import torch
 def merge_lora_to_base_model():
     # model_name_or_path = "/data0/maqi/huggingface_models/TechGPT-7B"
     # model_name_or_path = '/data0/maqi/huggingface_models/llama-2-7b'
-    model_name_or_path='/data0/maqi/huggingface_models/alpaca-2-7b-english'
+    # model_name_or_path = '/data0/maqi/huggingface_models/alpaca-2-7b-english'
+    # model_name_or_path = '/data0/maqi/huggingface_models/Chinese-LLaMA-Alpaca-2/Chinese-Alpaca-2-7B'
     # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/race_ft"
     # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/option1-ncr_ft"
+    model_name_or_path = '/data0/maqi/huggingface_models/option2-models/option1-ncr_ft_alpaca'
 
-    adapter_name_or_path = '/data0/maqi/KGLQA-model/output/option-2/RACE/race_ft_alpaca/final'
+    adapter_name_or_path = '/data0/maqi/KGLQA-model/output/option-1/NCR/ncr_ft_alpaca_2/final'
     # save_path = '/data0/maqi/KGLQA-model/output/RACE/race_ft'
-    save_path = "/data0/maqi/huggingface_models/option2-models/option2-race_ft_alpaca"
+    save_path = "/data0/maqi/huggingface_models/option1-models/option1-ncr_ft_alpaca_for_ncr"
 
     print('*' * 60)
     print(f"model_name_or_path:\n {model_name_or_path}")
