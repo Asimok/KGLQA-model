@@ -18,13 +18,15 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     save_path = f'result/ncr/{args.type}'
-    max_seq_length = 1400
-    split_token = '<question>:\n'
-    # max_seq_length = 2048
-    # split_token = '<问题>:\n'
 
-    eval_file_path = f"/data0/maqi/KGLQA-data/datasets/NCR/ncr_rocketqa_1400_instruct/{args.type}.jsonl"
-    # eval_file_path = f"/data0/maqi/KGLQA-data/datasets/NCR/Caption/ncr_caption_and_rel_instruct/{args.type}.jsonl"
+    # max_seq_length = 1400
+    # split_token = '<question>:\n'
+    # eval_file_path = f"/data0/maqi/KGLQA-data/datasets/NCR/ncr_rocketqa_1400_instruct/{args.type}.jsonl"
+
+    max_seq_length = 2048
+    split_token = '<问题>:\n'
+    eval_file_path = f"/data0/maqi/KGLQA-data/datasets/NCR/Caption/ncr_caption_and_rel_instruct/{args.type}.jsonl"
+
     # eval_file_path = f'/data0/maqi/KGLQA-data/datasets/NCR/random_select/ncr_chunk_1400_instruct/{args.type}.jsonl'
     # eval_file_path = f'/data0/maqi/KGLQA-data/datasets/NCR/random_select/without_knowledge_chunk_instruct/{args.type}.jsonl'
     print(f"eval_file_path: {eval_file_path}")

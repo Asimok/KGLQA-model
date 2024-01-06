@@ -131,7 +131,7 @@ def init_components(args, training_args):
             llm_int8_threshold=6.0,
             llm_int8_has_fp16_weight=False,
         ),
-        use_reentrant=True
+        # use_reentrant=True
     )
     # 加载tokenizer
     if model.name_or_path.__contains__('TechGPT-7B'):
@@ -151,7 +151,7 @@ def init_components(args, training_args):
             args.model_name_or_path,
             trust_remote_code=True,
             # llama不支持fast
-            use_fast=False if model.config.model_type == 'llama' else True
+            use_fast=False if model.config.model_type == 'llama' else True,
         )
         logger.info('\n')
         logger.info('*' * 20)
