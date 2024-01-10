@@ -3,8 +3,8 @@
 nproc_per_node=1
 
 #target=/data0/maqi/KGLQA-model/train_args/ablation_study/quality/option-2/without_knowledge_random.json
-#target=/data0/maqi/KGLQA-model/train_args/ncr/option-2/ncr_ft_base_cclue_baichuan2.json
-target=/data0/maqi/KGLQA-model/train_args/cclue/option-1/ncr_1_cclue_2_alpaca.json
+target=/data0/maqi/KGLQA-model/train_args/ncr/option-2/ncr_ft_base_cclue_alpaca.json
+#target=/data0/maqi/KGLQA-model/train_args/cclue/option-1/ncr_1_cclue_2_alpaca.json
 #target=/data0/maqi/KGLQA-model/train_args/quality/option-2/race_ft_alpaca_1_quality_2.json
 
 log_file=train.log

@@ -1,3 +1,6 @@
+import os
+
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 from peft import PeftModel
 from transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig
 import torch
@@ -17,9 +20,9 @@ def merge_lora_to_base_model():
     # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/option1-ncr_ft"
     # model_name_or_path = "/data0/maqi/huggingface_models/baichuan/Baichuan2-7B-Base"
 
-    adapter_name_or_path = '/data0/maqi/KGLQA-model/output/option-1/NCR/ncr_ft_alpaca_3/final'
+    adapter_name_or_path = '/data0/maqi/KGLQA-model/output/option-2/NCR/ncr_and_cclue_alpaca_2/final'
     # save_path = '/data0/maqi/KGLQA-model/output/RACE/race_ft'
-    save_path = "/data0/maqi/huggingface_models/option1-models/option1-ncr_ft_alpaca"
+    save_path = "/data0/maqi/huggingface_models/option2-models/option2-ncr_and_cclue_alpaca_2"
 
     print('*' * 60)
     print(f"model_name_or_path:\n {model_name_or_path}")

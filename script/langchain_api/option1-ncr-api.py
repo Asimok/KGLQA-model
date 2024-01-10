@@ -1,6 +1,6 @@
 import os.path
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 from transformers import LlamaTokenizer, set_seed
 import torch
 from flask import Flask, request, jsonify
@@ -14,7 +14,7 @@ app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False  # 防止返回中文乱码
 
 
-@app.route('/option2_quality_api', methods=['POST'])
+@app.route('/option1_ncr_api', methods=['POST'])
 def ds_llm():
     params = request.get_json()
     text = params.pop('inputs').strip()
@@ -51,7 +51,7 @@ def ds_llm():
 
 if __name__ == '__main__':
     # 使用合并后的模型进行推理
-    model_name_or_path = "/data0/maqi/huggingface_models/option2-models/option2-quality"
+    model_name_or_path = "/data0/maqi/huggingface_models/option1-models/option1-ncr_ft_alpaca"
     adapter_name_or_path = None
 
     print(f"model_name_or_path:\n {model_name_or_path}")
@@ -76,4 +76,4 @@ if __name__ == '__main__':
 
     print(f"load model: {model_name_or_path}")
 
-    app.run(host="0.0.0.0", port=27038)
+    app.run(host="0.0.0.0", port=27032)
