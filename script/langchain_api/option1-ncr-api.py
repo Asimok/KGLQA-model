@@ -51,7 +51,7 @@ def ds_llm():
 
 if __name__ == '__main__':
     # 使用合并后的模型进行推理
-    model_name_or_path = "/data0/maqi/huggingface_models/option1-models/option1-ncr_ft_alpaca"
+    model_name_or_path = "/data0/maqi/huggingface_models/option1-models/option1-ncr_ft"
     adapter_name_or_path = None
 
     print(f"model_name_or_path:\n {model_name_or_path}")
