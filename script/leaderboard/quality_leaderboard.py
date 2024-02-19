@@ -40,16 +40,23 @@ with open(test_file, 'r') as f:
 pred_labels = []
 answers = []
 correct = 0
+instruct=[]
 for i, human_input in enumerate(tqdm(samples)):
     conv = json.loads(human_input.strip())
     instruct_conv = instruct_format(context=conv['context'], answer='-1', query=conv['query'],
-                                    options=[conv['option_0'], conv['option-1'], conv['option-2'],
+                                    options=[conv['option_0'], conv['option_1'], conv['option_2'],
                                              conv['option_3']], conversation_id=conv['question_unique_id'])
+    instruct.append(instruct_conv)
     req_input = instruct_conv["conversation"][0]["human"]
     question_id = instruct_conv['conversation_id']
     pred = get_response(req_input, 2048, '<question>:\n')
     pred_labels.append(pred)
     answers.append(','.join([question_id, str(LABEL_TO_ID_DICT[pred])]))
+# with open('/data0/maqi/KGLQA-data/datasets/QuALITY/quality_rocketqa_2048_instruct/test.jsonl','w') as f:
+#     for line in instruct:
+#         f.write(json.dumps(line))
+#         f.write('\n')
+
 with open('/data0/maqi/KGLQA-data/datasets/QuALITY/predictions/pred.txt', 'w') as f:
     for line in answers:
         f.write(line)

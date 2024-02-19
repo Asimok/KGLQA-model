@@ -158,13 +158,7 @@ def init_components(args, training_args):
         logger.info('using llama2 model')
         logger.info('*' * 20)
         logger.info('\n')
-    # QWenTokenizer比较特殊，pad_token_id、bos_token_id、eos_token_id均为None。eod_id对应的token为<|endoftext|>
-    if tokenizer.__class__.__name__ == 'QWenTokenizer':
-        tokenizer.pad_token_id = tokenizer.eod_id
-        tokenizer.bos_token_id = tokenizer.eod_id
-        tokenizer.eos_token_id = tokenizer.eod_id
-    # ChatGLMTokenizer不需要设置，仅设置其他tokenizer
-    elif tokenizer.__class__.__name__ != 'ChatGLMTokenizer':
+    if tokenizer.__class__.__name__ != 'ChatGLMTokenizer':
         assert tokenizer.eos_token_id is not None
         assert tokenizer.bos_token_id is not None
         tokenizer.pad_token_id = tokenizer.eos_token_id if tokenizer.pad_token_id is None else tokenizer.pad_token_id

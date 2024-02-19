@@ -20,6 +20,9 @@ TASKS_MAPPING = {
 }
 COLUMNS = ["Task", "ID", "Prediction"]
 
+input_file = 'option2-wo-race-w-k.json'
+output_file = '-'.join(input_file.split('.')[0].split('-')[1:])
+
 
 def safe_read_csv(file_path):
     # https://stackoverflow.com/a/33952294
@@ -53,7 +56,7 @@ def main():
         type=str,
         help="The path to the quality dataset json file containing prediction",
         required=False,
-        default='/data0/maqi/KGLQA-data/datasets/QuALITY/predictions/zero_scrolls/lc_llama2_pred.json'
+        default=f'/data0/maqi/KGLQA-data/datasets/QuALITY/predictions/zero_scrolls/{input_file}'
     )
     parser.add_argument(
         "--narrative_qa_file",
@@ -124,7 +127,7 @@ def main():
         tasks_dfs = pd.concat((tasks_dfs, task_df[COLUMNS]))
 
     os.makedirs(args.output_dir, exist_ok=True)
-    outfile = os.path.join(args.output_dir, "zero_scrolls_predictions.csv")
+    outfile = os.path.join(args.output_dir, f"output/zero_scrolls_predictions_{output_file}.csv")
     print(f"Saving the complete prediction file to: {outfile}")
     tasks_dfs = tasks_dfs.reset_index(drop=True)
     tasks_dfs.to_csv(outfile, index=False)

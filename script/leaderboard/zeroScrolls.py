@@ -38,11 +38,16 @@ def instruct_format(context, answer, query, options, conversation_id, captions=N
     return message
 
 
-# test_file = '/data0/maqi/KGLQA-data/datasets/QuALITY/quality_rocketqa_2048/test.jsonl'
-test_file = '/data0/maqi/KGLQA-data/datasets/QuALITY/Caption/quality_caption_and_rel/test.jsonl'
-out_file = '/data0/maqi/KGLQA-data/datasets/QuALITY/predictions/zero_scrolls/kb_alpaca_pred.json'
+# test_file = '/data0/maqi/KGLQA-data/datasets/QuALITY/Caption/quality_caption_and_rel/test.jsonl'
+# test_file = '/data0/maqi/KGLQA-data/datasets/QuALITY/random_select/without_knowledge_random/test.jsonl'
+# test_file='/data0/maqi/KGLQA-data/datasets/QuALITY/random_select/without_knowledge_chunk/test.jsonl'
+# test_file = '/data0/maqi/KGLQA-data/datasets/QuALITY/random_select/with_knowledge_without_select/test.jsonl'
+test_file = '/data0/maqi/KGLQA-data/datasets/QuALITY/random_select/without_knowledge_select/test.jsonl'
+out_file = '/data0/maqi/KGLQA-data/datasets/QuALITY/predictions/zero_scrolls/option2-wo-k-w-s.json'
 if not os.path.exists(os.path.dirname(out_file)):
     os.makedirs(os.path.dirname(out_file))
+print('test_file: ', test_file)
+print('out_file: ', out_file)
 
 with open(test_file, 'r') as f:
     samples = f.readlines()

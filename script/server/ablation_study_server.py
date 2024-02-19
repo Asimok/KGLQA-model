@@ -1,6 +1,6 @@
 import os.path
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 from transformers import AutoTokenizer, LlamaTokenizer, set_seed
 import torch
 from flask import Flask, request, jsonify
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     # model_name_or_path = '/data0/maqi/huggingface_models/option2-models/option2-race_ft_alpaca'
     # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/option1-ncr_ft_alpaca"
     # model_name_or_path = "/data0/maqi/huggingface_models/option2-models/option2-race_ft_alpaca"
-    model_name_or_path = '/data0/maqi/huggingface_models/option2-models/option2-ncr_and_cclue_alpaca_2'
+    model_name_or_path = '/data0/maqi/huggingface_models/option2-models/option2-ncr-and-cclue-ft'
 
     # adapter_name_or_path = os.path.join('/data0/maqi/KGLQA-model/output/ablation_study/NCR/ncr_random_select/final')
     # adapter_name_or_path = '/data0/maqi/KGLQA-model/output/ablation_study/CCLUE/cclue_chunk/final'
@@ -83,7 +83,8 @@ if __name__ == '__main__':
     # adapter_name_or_path = '/data0/maqi/KGLQA-model/output/option-2/NCR/ncr_and_cclue_baichuan/checkpoint-2000'
     # adapter_name_or_path = '/data0/maqi/KGLQA-model/output/option-1/QuALITY/race_ft_alpaca_1_quality_2/final'
     # adapter_name_or_path = '/data0/maqi/KGLQA-model/output/option-2/NCR/ncr_and_cclue_alpaca_2/final'
-    adapter_name_or_path = '/data0/maqi/KGLQA-model/output/option-2/NCR/ncr_ft_base_cclue_alpaca_2/final'
+    # adapter_name_or_path = '/data0/maqi/huggingface_models/option2-models/ablation_study/quality/without_knowledge_select/final'
+    adapter_name_or_path = None
     print()
     print('*' * 120)
     print(f"model_name_or_path:\n {model_name_or_path}")
