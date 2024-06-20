@@ -7,8 +7,8 @@ from tqdm import tqdm
 
 
 def get_response(inputs, max_seq_length_, split_token_):
-    url = "http://219.216.64.75:7032/ablation_study"
-    # url = "http://219.216.64.75:7032/ablation_study"
+    # url = "http://219.216.64.127:7032/ablation_study"
+    url = "http://219.216.64.116:7032/ablation_study"
     # url = 'http://219.216.64.231:27035/option1_quality_api'
     payload = json.dumps({
         "inputs": inputs,

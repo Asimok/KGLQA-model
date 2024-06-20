@@ -18,7 +18,7 @@ plt.plot(1400, 54.12, 'b*', markersize=10)
 plt.text(1400, 54.12, "54.12", ha='center', va='bottom', color='blue')
 
 plt.xlabel("Key Information length: l")
-plt.ylabel("accuracy")
+plt.ylabel("accuracy(%)")
 # 保存
 plt.savefig('len_analyze.png')
 plt.show()

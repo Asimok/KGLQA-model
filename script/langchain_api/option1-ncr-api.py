@@ -1,6 +1,6 @@
 import os.path
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 from transformers import LlamaTokenizer, set_seed
 import torch
 from flask import Flask, request, jsonify

@@ -12,8 +12,8 @@ if __name__ == '__main__':
     nohup python -u  cclue.py --type dev > logs/cclue_dev.log 2>&1 &
     """
     parser = argparse.ArgumentParser(description="cclue evaluate")
-    PHASES = ['dev', 'test','train']
-    parser.add_argument("--type", type=str, required=True, choices=PHASES,
+    PHASES = ['dev', 'test', 'train']
+    parser.add_argument("--type", type=str, required=False, choices=PHASES, default='test',
                         help="datasets")
     args = parser.parse_args()
 

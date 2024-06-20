@@ -3,7 +3,7 @@
 nproc_per_node=1
 
 #target=/data0/maqi/KGLQA-model/train_args/ablation_study/quality/option-2/without_knowledge_random.json
-target=/data0/maqi/KGLQA-model/train_args/ncr/option-2/ncr_ft_base_cclue_alpaca.json
+target=/data0/maqi/KGLQA-model/train_args/ncr/option-1/ncr_ft_alpaca_64k.json
 #target=/data0/maqi/KGLQA-model/train_args/cclue/option-1/ncr_1_cclue_2_alpaca.json
 #target=/data0/maqi/KGLQA-model/train_args/quality/option-2/race_ft_alpaca_1_quality_2.json
 
@@ -32,13 +32,13 @@ fi
 
 # 如果 nproc_per_node=1，那么就只使用第二块卡
 if [ ${nproc_per_node} -eq 1 ];then
-    export CUDA_VISIBLE_DEVICES=0
+    export CUDA_VISIBLE_DEVICES=1
 else
     export CUDA_VISIBLE_DEVICES=0,1
 fi
 
 #torchrun --nnodes 1 --nproc_per_node ${nproc_per_node} train_qlora.py --train_args_file ${target}
-nohup torchrun --master_port 29501 --nnodes 1 --nproc_per_node ${nproc_per_node} /data0/maqi/KGLQA-model/train_qlora.py --train_args_file ${target} > "${output_dir}"/${log_file} 2>&1 &
+nohup torchrun --master_port 29501 --nnodes 1 --nproc_per_node ${nproc_per_node} /data0/maqi/KGLQA-model/train_qlora_flash_attn.py --train_args_file ${target} > "${output_dir}"/${log_file} 2>&1 &
 # shellcheck disable=SC2046
 echo $(pwd)/"${output_dir}"/"${log_file}"
 # 打印进程号

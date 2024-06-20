@@ -20,7 +20,7 @@ TASKS_MAPPING = {
 }
 COLUMNS = ["Task", "ID", "Prediction"]
 
-input_file = 'option2-wo-race-w-k.json'
+input_file = 'test_lc_llama2_random_select.json'
 output_file = '-'.join(input_file.split('.')[0].split('-')[1:])
 
 

@@ -14,8 +14,8 @@ for i in range(len(x)):
     plt.text(x[i]+0.01, y[i] - 0.3, f"{y[i]}", ha='center', va='bottom', color='gray')
 plt.text(0.28, 55.33, "55.33", ha='center', va='bottom', color='blue')
 
-plt.xlabel("summary proportion")
-plt.ylabel("accuracy")
+plt.xlabel("summary proportion(%)")
+plt.ylabel("accuracy(%)")
 # 保存
 plt.savefig('proportion_analyze.png')
 plt.show()

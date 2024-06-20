@@ -64,12 +64,15 @@ if __name__ == '__main__':
     # model_name_or_path = '/data0/maqi/huggingface_models/alpaca-2-7b-english'
     # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/option1-ncr_ft"
     # model_name_or_path = '/data0/maqi/huggingface_models/option1-models/option1-race_ft'
+    # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/option1-cclue"
+    # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/option1-quality"
     # model_name_or_path = '/data0/maqi/huggingface_models/option2-models/option2-race_ft'
     # model_name_or_path = '/data0/maqi/huggingface_models/option1-models/option1-ncr_ft_alpaca'
     # model_name_or_path = '/data0/maqi/huggingface_models/option2-models/option2-race_ft_alpaca'
     # model_name_or_path = "/data0/maqi/huggingface_models/option1-models/option1-ncr_ft_alpaca"
     # model_name_or_path = "/data0/maqi/huggingface_models/option2-models/option2-race_ft_alpaca"
-    model_name_or_path = '/data0/maqi/huggingface_models/option2-models/option2-ncr-and-cclue-ft'
+    model_name_or_path = '/data0/maqi/huggingface_models/option2-models/option2-ncr-and-cclue'
+    # model_name_or_path = '/data0/maqi/huggingface_models/option2-models/option2-cclue'
 
     # adapter_name_or_path = os.path.join('/data0/maqi/KGLQA-model/output/ablation_study/NCR/ncr_random_select/final')
     # adapter_name_or_path = '/data0/maqi/KGLQA-model/output/ablation_study/CCLUE/cclue_chunk/final'
@@ -108,7 +111,8 @@ if __name__ == '__main__':
         adapter_name_or_path=adapter_name_or_path
     ).eval()
     # 加载tokenizer
-    if model.name_or_path.__contains__('TechGPT-7B'):
+
+    if model.name_or_path.__contains__('TechGPT-7B') or model.name_or_path.__contains__('cclue')or model.name_or_path.__contains__('ncr'):
         print('use TechGPT-7B tokenizer')
         tokenizer = LlamaTokenizer.from_pretrained(model_name_or_path)
         tokenizer.pad_token_id = 0
